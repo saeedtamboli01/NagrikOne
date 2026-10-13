@@ -1,0 +1,16 @@
+
+The command exited with code 0.
+Output:
+git : warning: in the working copy of 'app/api/auth/register/route.ts', LF will be replaced by CRLF the next time Git 
+touches it
+At line:1 char:1
++ git add app/api/auth/register/route.ts app/globals.css app/login/page ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: in the... Git touches it:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+warning: in the working copy of 'app/login/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/AuthModal.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/auth/passwordAuth.ts', LF will be replaced by CRLF the next time Git touches it
+staged
+

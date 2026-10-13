@@ -1,0 +1,26 @@
+
+The command exited with code 0.
+Output:
+
+Name               Length
+----               ------
+app                      
+components               
+lib                      
+prisma                   
+public                   
+.env.example       549   
+.gitignore         483   
+eslint.config.mjs  812   
+next-env.d.ts      268   
+next.config.mjs    132   
+package-lock.json  287083
+package.json       940   
+postcss.config.mjs 169   
+README.md          3667  
+tailwind.config.js 1299  
+tsconfig.json      737   
+vercel.json        102   
+
+
+

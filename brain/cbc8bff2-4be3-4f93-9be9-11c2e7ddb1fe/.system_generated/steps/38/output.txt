@@ -1,0 +1,13 @@
+The following changes were made by the replace_file_content tool to: C:\Users\JAHID\.gemini\antigravity\scratch\NagrikOne\prisma\schema.prisma. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -73,6 +73,7 @@
+   name          String?
+   email         String?        @unique
+   phone         String?        @unique
++  passwordHash  String?        // PBKDF2 salt:hash — null for OTP-only accounts
+   role          Role           @default(CITIZEN)
+   isActive      Boolean        @default(true)
+   createdAt     DateTime       @default(now())
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

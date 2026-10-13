@@ -1,0 +1,22 @@
+
+The command exited with code 1.
+Output:
+& : The term 'C:\Program Files\nodejs\node.exe' is not recognized as the name of a cmdlet, function, script file, or 
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try 
+again.
+At line:1 char:3
++ & "C:\Program Files\nodejs\node.exe" --version 2>$null; & "C:\Program ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Program Files\nodejs\node.exe:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+& : The term 'C:\Program Files\nodejs\npm.cmd' is not recognized as the name of a cmdlet, function, script file, or 
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try 
+again.
+At line:1 char:59
++ ... e.exe" --version 2>$null; & "C:\Program Files\nodejs\npm.cmd" --versi ...
++                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Program Files\nodejs\npm.cmd:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+

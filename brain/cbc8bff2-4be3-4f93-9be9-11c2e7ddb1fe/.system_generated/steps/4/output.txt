@@ -1,0 +1,13 @@
+Task: cbc8bff2-4be3-4f93-9be9-11c2e7ddb1fe/task-2
+Status: RUNNING
+Log: C:\Users\JAHID\.gemini\antigravity\brain\cbc8bff2-4be3-4f93-9be9-11c2e7ddb1fe\.system_generated\tasks\task-2.log
+Log output:
+git : Cloning into 'C:\Users\JAHID\.gemini\antigravity\scratch\NagrikOne'...
+At line:1 char:1
++ git clone https://github.com/Jahid-Tamboli/NagrikOne.git C:\Users\JAH ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Cloning into 'C...h\NagrikOne'...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+Last progress: 4s ago
