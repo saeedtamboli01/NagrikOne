@@ -31,7 +31,7 @@ An AI-powered, statutory citizen complaint and dispute resolution engine. Nagrik
 
 ### 1. Installation
 ```bash
-git clone https://github.com/Jahid-Tamboli/NagrikOne.git
+git clone https://github.com/saeedtamboli01/NagrikOne.git
 cd NagrikOne
 npm install
 ```

@@ -1,7 +1,0 @@
-git : Cloning into 'C:\Users\JAHID\.gemini\antigravity\scratch\NagrikOne'...
-At line:1 char:1
-+ git clone https://github.com/Jahid-Tamboli/NagrikOne.git C:\Users\JAH ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Cloning into 'C...h\NagrikOne'...:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 

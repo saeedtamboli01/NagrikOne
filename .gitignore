@@ -41,3 +41,17 @@ yarn-error.log*
 # OS Files
 .DS_Store
 Thumbs.db
+
+# IDE / AI-agent data (never commit)
+brain/
+conversations/
+annotations/
+builtin/
+cache/
+crashes/
+presence/
+bin/
+scratch/
+*.pb
+*.pbtxt
+installation_id
