@@ -490,6 +490,24 @@ export const PROBLEM_TYPES: ProblemTypeDefinition[] = [
     guidelines: 'Banks are liable for up to 100 times the annual locker rent in cases of theft or building security failure.'
   },
   {
+    id: 'bank-account-frozen',
+    name: 'Frozen / Blocked Bank Account (Debit Freeze or Lien)',
+    category: 'Banking & Finance',
+    route: 'Bank Branch Manager -> Principal Nodal Officer -> RBI Integrated Ombudsman',
+    priority: 'URGENT',
+    estimatedResolutionDays: 30,
+    legalAct: 'RBI Integrated Ombudsman Scheme 2021, RBI Master Direction on KYC, and BNSS Section 106 (police hold on suspect property)',
+    escalationLevel: 'L1: Branch Manager -> L2: Bank Principal Nodal Officer -> L3: RBI Integrated Ombudsman (14448)',
+    tags: ['account frozen', 'bank account freeze', 'account blocked', 'debit freeze', 'lien on account', 'account seized', 'cyber cell freeze'],
+    questions: [
+      'Did the bank or police send you an SMS, email or letter about the freeze?',
+      'Did you recently receive money from an unknown person or through a UPI/online sale?',
+      'Is your KYC (Aadhaar/PAN/address) up to date, and was the account used in the last 2 years?'
+    ],
+    evidence: ['Account number and last 6 months statement', 'ID and address proof (KYC)', 'Any SMS/email/letter from bank or police', 'Proof of source of funds (salary slips, invoices, sale receipts)'],
+    guidelines: 'A freeze must have a lawful reason (police/cyber-cell hold, court or tax order, incomplete KYC, dormancy, or suspicious activity). Find out which one it is in writing, because each has a different fix.'
+  },
+  {
     id: 'bank-foreclosure-charges',
     name: 'Illegal Home / Personal Loan Prepayment & Foreclosure Penalty',
     category: 'Banking & Finance',

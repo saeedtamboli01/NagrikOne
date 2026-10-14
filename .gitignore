@@ -55,3 +55,7 @@ scratch/
 *.pb
 *.pbtxt
 installation_id
+
+# Pages build scratch
+.pages-aside-*
+out/

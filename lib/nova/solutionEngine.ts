@@ -1,4 +1,5 @@
-﻿import { ProblemTypeDefinition } from '@/lib/problemTypes';
+import { ProblemTypeDefinition } from '@/lib/problemTypes';
+import { frozenAccountSolution, onlineFraudSolution, upiFailedSolution } from './expertSolutions';
 
 export interface NovaSolution {
   headline: string;
@@ -28,6 +29,11 @@ export function generateNovaSolution(
 ): NovaSolution {
   const norm = rawText.toLowerCase();
   const loc = location || 'your city / jurisdiction';
+
+  // Expert, verified solutions take priority over generic templates
+  if (problem.id === 'bank-account-frozen') return frozenAccountSolution(loc);
+  if (problem.id === 'cyber-otp-phishing') return onlineFraudSolution(loc);
+  if (problem.id === 'bank-upi-failed-debit') return upiFailedSolution(loc);
 
   // Check if this is a follow-up query in an ongoing conversation
   const isFollowUp = history.length > 2;
@@ -230,7 +236,7 @@ ${notice}
     norm.includes('marksheet') ||
     norm.includes('degree') ||
     norm.includes('original document') ||
-    norm.includes('tc')
+    /\btc\b/.test(norm)
   ) {
     const notice = `STATUTORY DEMAND FOR RETURN OF ORIGINAL CERTIFICATES & MARKSHEETS
 Date: ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -318,7 +324,7 @@ ${notice}
   const genericChatText = `### Statutory Action Plan for ${problem.name}
 
 **Your Legal Standing & Rights:**
-Under **${problem.legalAct || 'Applicable Statutory and Administrative Law'}**, citizens are legally entitled to standard service delivery within a defined Right to Public Services timeline.
+Under **${problem.legalAct || 'Applicable Statutory and Administrative Law'}**, you can raise a formal complaint with the authority below. Keep every document and complaint number.
 
 ---
 
@@ -328,17 +334,17 @@ Under **${problem.legalAct || 'Applicable Statutory and Administrative Law'}**, 
    Collate all primary evidence (receipts, correspondence, photographs, or transaction IDs) into a structured case dossier.
 
 2. **Step 2 — File with Designated Statutory Department:**
-   Lodge your grievance before **${problem.route}** (${loc}). Under statutory service delivery rules, the department must take cognizance within **${problem.estimatedResolutionDays} days**.
+   Lodge your grievance before **${problem.route}** (${loc}). The typical resolution target is about **${problem.estimatedResolutionDays} ${problem.estimatedResolutionDays === 1 ? 'day' : 'days'}**.
 
 3. **Step 3 — Statutory Escalation Pathway:**
-   If unresolved after ${problem.estimatedResolutionDays} days, escalate according to: **${problem.escalationLevel}**.
+   If unresolved after ${problem.estimatedResolutionDays} ${problem.estimatedResolutionDays === 1 ? 'day' : 'days'}, escalate according to: **${problem.escalationLevel}**.
 
 ---
 
 **Statutory Authority & Guidelines:**
 - **Authority:** ${problem.route}
 - **Governing Framework:** ${problem.legalAct}
-- **Resolution SLA:** ${problem.estimatedResolutionDays} Days
+- **Typical resolution time:** ${problem.estimatedResolutionDays} ${problem.estimatedResolutionDays === 1 ? 'day' : 'days'}
 - **Key Action:** ${problem.guidelines}`;
 
   return {

@@ -21,6 +21,22 @@ interface DomainRule {
 }
 
 const DOMAIN_RULES: DomainRule[] = [
+  // Frozen / blocked bank account (must come before other banking rules)
+  {
+    domainId: 'bank-account-frozen',
+    primaryCategory: 'Banking & Finance',
+    keywords: /\b(account (has been |is |got |was |gets )?(frozen|freeze|freezed|blocked|seized|on hold|under lien)|(frozen|freezed|blocked|seized) (bank )?account|bank account (has been |is |got |was )?(freeze|frozen|freezed|block|blocked)|(account|khata) (freeze|band|seal|hold) (ho|kar)|debit freeze|lien (on|in) (my )?account|cyber cell freeze|account lien)\b/i,
+    weight: 1.0,
+    urgency: 'URGENT'
+  },
+  // OTP / UPI / online money fraud (broad, natural phrasing in English + Hinglish)
+  {
+    domainId: 'cyber-otp-phishing',
+    primaryCategory: 'Cyber & Online Fraud',
+    keywords: /\b(otp (fraud|scam|chala|share|diya|bata|leak)|scam.{0,15}otp|otp.{0,15}(scam|fraud|chala gaya|stolen)|upi fraud|online fraud|cyber fraud|online scam|fraud (call|sms|message|link)|paise kat gaye|money (stolen|deducted|debited) (by|due to|after) (fraud|scam|link|call)|netbanking hacked|account hacked|sim swap|phishing)\b/i,
+    weight: 0.97,
+    urgency: 'CRITICAL'
+  },
   // Cyber & Online Financial Fraud (Immediate Financial / Safety Danger)
   {
     domainId: 'cyber-digital-arrest',
@@ -220,9 +236,12 @@ export function classifyCitizenIssue(text: string, customLocation?: string): Nov
   let extractedLocation: string | undefined = customLocation;
   if (!extractedLocation) {
     const cityMatch = text.match(/\b(pune|mumbai|delhi|new delhi|bengaluru|bangalore|hyderabad|chennai|kolkata|ahmedabad|surat|noida|gurgaon|gurugram|faridabad|ghaziabad|lucknow|kanpur|jaipur|bhopal|indore|patna|chandigarh|nagpur|nashik|thane|navi mumbai)\b/i);
-    const locMatch = text.match(/(?:at|in|near|near to|behind|opposite|mein|ke paas|chowk|road|street|nagar|colony|sector|ward|society|phase|area)\s+([A-Za-z0-9\s,\.-]{3,40})/i);
+    const locMatch = text.match(/\b(?:near|opposite|behind|next to)\s+([A-Z][A-Za-z0-9 ,.-]{2,40})/);
     if (cityMatch && locMatch && locMatch[1]) {
-      extractedLocation = `${locMatch[1].trim()}, ${cityMatch[0].trim()}`;
+      const place = locMatch[1].trim();
+      extractedLocation = place.toLowerCase().includes(cityMatch[0].toLowerCase())
+        ? place
+        : `${place}, ${cityMatch[0].trim()}`;
     } else if (locMatch && locMatch[1]) {
       extractedLocation = locMatch[1].trim();
     } else if (cityMatch) {

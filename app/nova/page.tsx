@@ -34,6 +34,7 @@ import Navbar from '@/components/Navbar';
 import AuthModal from '@/components/AuthModal';
 import NovaHeroCore, { NovaState } from '@/components/three/NovaHeroCore';
 import { AuthSession } from '@/lib/auth/session';
+import { analyzeIssue } from '@/lib/nova/analyze';
 import { novaVoice } from '@/lib/voice/tts';
 import { novaSTT } from '@/lib/voice/stt';
 import { MicAudioAnalyzer } from '@/lib/voice/audioAnalyzer';
@@ -260,21 +261,12 @@ function NovaContent() {
     setAnalyzing(true);
 
     try {
-      const res = await fetch('/api/route', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text: rawText,
-          location: customLocation || undefined,
-          history: conversation.map((c) => ({ sender: c.sender, text: c.text }))
-        })
+      // Runs fully in the browser, so it also works on static hosting (GitHub Pages).
+      const data = analyzeIssue({
+        text: rawText,
+        location: customLocation || undefined,
+        history: conversation.map((c) => ({ sender: c.sender, text: c.text }))
       });
-
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || 'Failed to analyze issue.');
-      }
 
       const classification = data.classification || {};
       const route = data.route || {};
@@ -295,9 +287,7 @@ function NovaContent() {
               classification.domain || 'a citizen-support category'
             }.`);
 
-      const spokenSummary = classification.summary
-        ? `${classification.summary} I've prepared your legal action plan and statutory notice draft.`
-        : `I've analyzed your situation and prepared an immediate legal solution.`;
+      const spokenSummary = data.spokenSummary;
 
       setNovaState('CLASSIFYING');
       setAnalysisResult({
